@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Umbraco.Community.UfmLabelPreview.TestSite/Umbraco.Community.UfmLabelPreview.TestSite.csproj" />
+  <Project Path="Umbraco.Community.UfmLabelPreview/Umbraco.Community.UfmLabelPreview.csproj" />
+</Solution>

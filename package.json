@@ -1,0 +1,9 @@
+{
+  "name": "umbraco-community-ufmlabelpreview",
+  "private": true,
+  "type": "module",
+  "description": "No dependencies. Only here so `npm test` runs the pure-module tests with Node's built-in runner.",
+  "scripts": {
+    "test": "node --test"
+  }
+}

@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Serve wwwroot/App_Plugins/... at /App_Plugins/... (not /_content/<id>/...) -->
+    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Umbraco.Community.UfmLabelPreview</Product>
+    <PackageId>Umbraco.Community.UfmLabelPreview</PackageId>
+    <!-- Keep in step with umbraco-package.json "version" and CHANGELOG.md -->
+    <Version>0.1.0</Version>
+    <Title>Umbraco.Community.UfmLabelPreview</Title>
+    <Description>Live preview of block labels (Umbraco Flavored Markdown) while configuring Block List, Block Grid, Block RTE and Block Single types, using mock data. Configuration-time aid only; no content lookups, no telemetry.</Description>
+    <!-- "umbraco-marketplace" is what gets the package listed on the Umbraco Marketplace -->
+    <PackageTags>umbraco;umbraco-marketplace;umbraco-cms;backoffice;block-list;block-grid;ufm</PackageTags>
+    <Authors>Nathaniel Nunes</Authors>
+    <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Nathaniel Nunes</Copyright>
+    <!-- TODO before release: PackageProjectUrl, RepositoryUrl, PackageReleaseNotes and Source Link settings (see Property-Navigator). -->
+    <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <!-- Central package management - versions live in src/Directory.Packages.props.
+       No C# code: the reference only constrains consumers to Umbraco 17. -->
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\README_nuget.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

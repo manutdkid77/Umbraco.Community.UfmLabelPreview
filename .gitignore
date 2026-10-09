@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# .NET build output
+[Bb]in/
+[Oo]bj/
+*.nupkg
+*.snupkg
+artifacts/
+
+# TestSite runtime data (database, logs, media). appsettings.Development.json is tracked on purpose:
+# it holds the throwaway unattended-install login so the TestSite runs with no setup.
+src/Umbraco.Community.UfmLabelPreview.TestSite/umbraco/
+src/Umbraco.Community.UfmLabelPreview.TestSite/wwwroot/media/
