@@ -161,7 +161,9 @@ Retest these on every Umbraco minor:
 ```bash
 node --test                                                        # pure-module tests (tests/*.test.mjs), no dependencies
 dotnet build src/Umbraco.Community.UfmLabelPreview.slnx
-dotnet run --project src/Umbraco.Community.UfmLabelPreview.TestSite   # first run shows the Umbraco installer
+dotnet run --project src/TestSites/V17 --launch-profile Umbraco.Web.UI   # Umbraco 17, Clean starter kit (https://localhost:44397)
+dotnet run --project src/TestSites/V18 --launch-profile Umbraco.Web.UI   # Umbraco 18 (https://localhost:44398)
+dotnet run --project src/TestSites/V19 --launch-profile Umbraco.Web.UI   # Umbraco 19 RC, Clean starter kit, needs the .NET 11 SDK (https://localhost:44399)
 dotnet pack src/Umbraco.Community.UfmLabelPreview -c Release
 ```
 

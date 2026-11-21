@@ -1,4 +1,8 @@
 <Solution>
-  <Project Path="Umbraco.Community.UfmLabelPreview.TestSite/Umbraco.Community.UfmLabelPreview.TestSite.csproj" />
+  <Folder Name="/TestSites/">
+    <Project Path="TestSites/V17/Umbraco.Community.UfmLabelPreview.TestSite.V17.csproj" />
+    <Project Path="TestSites/V18/Umbraco.Community.UfmLabelPreview.TestSite.V18.csproj" />
+    <Project Path="TestSites/V19/Umbraco.Community.UfmLabelPreview.TestSite.V19.csproj" />
+  </Folder>
   <Project Path="Umbraco.Community.UfmLabelPreview/Umbraco.Community.UfmLabelPreview.csproj" />
 </Solution>
