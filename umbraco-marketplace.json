@@ -29,6 +29,14 @@
       "Caption": "Settings model values get their own mock row"
     },
     {
+      "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/mock-object.png",
+      "Caption": "The Mock object panel shows the exact object the label renders against"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/lookup-placeholder.png",
+      "Caption": "Lookups of real content show a placeholder and a note"
+    },
+    {
       "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/filter-note.png",
       "Caption": "Notes flag problems such as a deprecated filter"
     },

@@ -29,6 +29,14 @@ Switch it to **Long** to check how a long value wraps:
 
 ![A $settings value with its own mock row](docs/screenshots/settings-value.png)
 
+Open **Mock object** to see the exact object the label renders against:
+
+![The Mock object panel showing the JSON the label renders against](docs/screenshots/mock-object.png)
+
+Lookups of real content show a placeholder and a note, never real content:
+
+![A umbContentName lookup shown as a placeholder, with a note explaining why](docs/screenshots/lookup-placeholder.png)
+
 Notes flag problems in the label, such as a deprecated filter name:
 
 ![A note warning that the strip-html filter is deprecated](docs/screenshots/filter-note.png)
