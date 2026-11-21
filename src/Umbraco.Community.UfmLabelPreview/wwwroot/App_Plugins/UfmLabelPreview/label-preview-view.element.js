@@ -24,7 +24,7 @@ const BLOCK_SINGLE_WORKSPACE = "Umb.Workspace.BlockSingleType";
 const DEBOUNCE_MS = 150;
 
 // Core components that take a property alias (others, e.g. from third-party packages, may not).
-const CORE_ALIAS_COMPONENTS = new Set(["umbValue", "umbContentName", "umbLink", "umbMemberName", "umbElementName"]);
+const CORE_ALIAS_COMPONENTS = new Set(["umbValue", "umbContentName", "umbLink", "umbMemberName", "umbElementName", "umbFormName"]);
 
 // English only for v1; kept together for later localisation.
 const STRINGS = {
@@ -51,6 +51,9 @@ const STRINGS = {
   noSettingsType: (alias) => `"$settings.${alias}" — this block has no settings element type.`,
   unsupported: (alias, editor) => `"${alias}" uses ${editor || "an unknown editor"} — not previewable, value shape not mocked.`,
   noIndex: "$index isn't available in Block Single labels (it is undefined at runtime).",
+  deprecatedFilter: (alias, replacement) =>
+    `"${alias}" is deprecated — use "${replacement}". It still works until Umbraco 20 but logs a warning.`,
+  deprecatedExpressionFilter: (alias, replacement) => `"${alias}" isn't a filter inside \${ } — use "${replacement}".`,
   printsObject: (raw) => `${raw} prints an object ("[object Object]") — the same happens at runtime.`,
 };
 
@@ -270,6 +273,12 @@ export class UlpLabelPreviewViewElement extends UmbLitElement {
       }
 
       if (scan.usesIndex && !this._includeIndex) notes.push(STRINGS.noIndex);
+
+      for (const d of scan.deprecatedFilters) {
+        notes.push(
+          d.inExpression ? STRINGS.deprecatedExpressionFilter(d.alias, d.replacement) : STRINGS.deprecatedFilter(d.alias, d.replacement),
+        );
+      }
 
       const safeLinkAliases = contentProps.filter((p) => kinds.get(p.alias)?.link).map((p) => p.alias);
       const rewritten = rewriteLabel(label, scan, { safeLinkAliases });

@@ -8,6 +8,7 @@ const LOOKUP_NAMES = {
   umbContentName: "Content name",
   umbMemberName: "Member name",
   umbElementName: "Element name",
+  umbFormName: "Form name", // Umbraco Forms
   umbLink: "Link",
 };
 

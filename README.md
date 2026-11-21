@@ -1,6 +1,6 @@
 # UFM Label Preview for Umbraco
 
-[![Umbraco 17](https://img.shields.io/badge/Umbraco-17-3544B1?logo=umbraco)](https://umbraco.com)
+[![Umbraco 17 | 18 | 19](https://img.shields.io/badge/Umbraco-17%20%7C%2018%20%7C%2019-3544B1?logo=umbraco)](https://umbraco.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
 See how a block's label will render while you're still configuring it.
@@ -23,7 +23,7 @@ Label field, a live preview rendered with **mock data**, and a panel for flippin
 - **Filled / Empty / Cleared / Long switches** for every referenced property, plus an editable sample value for text,
   numbers, toggles and rich text markup.
 - **Clear notes** for anything that can't be previewed: lookups of real content (`umbContentName`,
-  `umbMemberName`), custom UFM components from other packages, unknown aliases, and missing settings types.
+  `umbMemberName`, `umbElementName`, `umbFormName`), custom UFM components from other packages, unknown aliases, and missing settings types.
 - **Same Label field.** The Label field on this tab is the same value as on the Settings tab, and edits save through
   the normal path.
 
@@ -39,7 +39,7 @@ the **Label preview** tab.
 ## What it doesn't do
 
 - **No real content.** Values are always mocks. Components that look up real items (`umbContentName`,
-  `umbMemberName`, `umbElementName`, and `umbLink` on anything other than a Multi URL Picker) are shown as
+  `umbMemberName`, `umbElementName` (Umbraco 18+), `umbFormName` (Umbraco Forms), and `umbLink` on anything other than a Multi URL Picker) are shown as
   placeholders such as `‹Content name: picker›`.
 - **Custom UFM components** from other packages are shown as placeholders (their behaviour can't be mocked
   reliably). **Custom UFM filters** do run, on the mock data.
@@ -66,6 +66,7 @@ against the Umbraco 17 backoffice source:
 | `Umbraco.Slider` | `{ from, to }` | `slider/types.ts:1-6` |
 | `Umbraco.ContentPicker`, `Umbraco.MemberPicker` | non-GUID string | `document-picker/…document-picker.element.ts:18`, `member-picker/…member-picker.element.ts:16` |
 | `Umbraco.MultiNodeTreePicker` | `[{ type: "document", unique: "mock-document-1" }]` | `content-picker/components/input-content/input-content.element.ts:78-82` |
+| `Umbraco.ElementPicker` (Umbraco 18+) | non-GUID string array | `elements/property-editor/element-picker/element-picker-property-editor-ui.element.ts` |
 | `Umbraco.MediaPicker3` | `[{ key, mediaKey, mediaTypeAlias, focalPoint, crops }]` | `media/media/property-editors/types.ts:1-9` |
 | `Umbraco.MultiUrlPicker` | `[{ name: "Sample link", url, type: "external" }]` (no `unique`) | `multi-url-picker/link-picker-modal/types.ts:3-14` |
 | anything else | `{}` + "not previewable" note | |
@@ -95,14 +96,41 @@ The value passed to the renderer mirrors core:
 
 ## Compatibility
 
+One package covers Umbraco 17, 18 and 19. It has no C# code, so the same NuGet package serves all three.
+
 | Umbraco | Package |
 |---|---|
-| 17.x | Supported (built against 17.0.0, tested on 17.7.0) |
-| 18.x | Not yet. 18 removes the kebab-case filter aliases and adds `umbElementName` |
+| 17.x | Supported. Verified on 17.8.0 (Block List, deprecated-filter notes); the full manual matrix was run on 17.7.0 |
+| 18.x | Supported. Verified on 18.2.1 (Block List, including the Element Picker mock) |
+| 19.x | Supported. Verified on 19.0.0-rc1 (Block List, .NET 11 SDK). Not run on a 19.1 release |
 
-Kebab-case filter aliases (`strip-html`, `word-limit`, `title-case`) are deprecated since 16.4 and removed in 18. The
-preview simply uses whatever filters are registered in your site.
+The NuGet dependency range is `[17.0.0, 20.0.0)`. Umbraco 19 targets .NET 11. The package stays on net10.0, which
+a .NET 11 site can consume.
 
+Kebab-case filter aliases (`strip-html`, `title-case`, `word-limit`) are deprecated. From Umbraco 18 their manifests
+are gone, but component filters such as `{= x | strip-html}` still work: core maps them to the camelCase names and logs a
+deprecation warning, until Umbraco 20. Inside `${ }` only the camelCase names (`stripHtml`, `titleCase`, `wordLimit`)
+work. The preview notes either case and still renders what core renders. Otherwise it uses whatever filters are
+registered on your site.
+
+ Install for development only (optional)
+
+Block types are normally configured in development and deployed with uSync or Umbraco Deploy, so you may not want
+this tool on production. Even if it ships, the cost is small: there's no C#, nothing runs on the public site, and the
+JavaScript only loads when the Label preview tab is opened.
+
+To leave it out of Release builds, add a condition to the package reference:
+
+```xml
+<PackageReference Include="Umbraco.Community.UfmLabelPreview" Version="0.2.0"
+                  Condition="'$(Configuration)' == 'Debug'" />
+```
+
+Release builds and `dotnet publish -c Release` then leave out the DLL and `App_Plugins/UfmLabelPreview`.
+
+Caveat: Umbraco Cloud and most CI pipelines build every environment in Release, so the tool won't be on Cloud
+environments either. If you configure blocks on a Cloud dev environment, leave the condition off. `Debug` is only a
+convention, so a custom configuration or property works too.
 Support is best-effort.
 
 ## Internal / undocumented API reliance

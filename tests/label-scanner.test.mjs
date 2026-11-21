@@ -132,3 +132,23 @@ test("non-string input is safe", () => {
   assert.deepEqual(scan(undefined).componentTokens, []);
   assert.deepEqual(scan(null).contentAliases, []);
 });
+
+test("deprecated kebab-case filters are reported", () => {
+  const components = [{ alias: "umbValue", marker: "=" }];
+  const dep = (md) => scanLabel(md, { components, filterAliases: [] }).deprecatedFilters;
+
+  assert.deepEqual(dep("{= x | strip-html}"), [{ alias: "strip-html", replacement: "stripHtml", inExpression: false }]);
+  assert.deepEqual(
+    dep("{umbValue: x | wordLimit:3 | title-case}"),
+    [{ alias: "title-case", replacement: "titleCase", inExpression: false }],
+  );
+  assert.deepEqual(dep("${ x | strip-html }"), [{ alias: "strip-html", replacement: "stripHtml", inExpression: true }]);
+  assert.deepEqual(dep("${ 'a | strip-html' }"), []);
+  assert.deepEqual(dep("{= x | stripHtml} ${ x | stripHtml }"), []);
+  assert.deepEqual(dep("{= x | strip-html} {= y | strip-html}").length, 1);
+});
+
+test("a kebab-case filter in an expression doesn't leak its parts as properties", () => {
+  const s = scanLabel("${ title | strip-html }", { components: [], filterAliases: [] });
+  assert.deepEqual(s.contentAliases, ["title"]);
+});

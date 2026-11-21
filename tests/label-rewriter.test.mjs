@@ -65,3 +65,11 @@ test("output never introduces <", () => {
     assert.ok(introduced <= 0, `introduced < in ${r.markdown}`);
   }
 });
+
+test("umbFormName (Umbraco Forms) is a lookup placeholder", () => {
+  const forms = [...components, { alias: "umbFormName" }];
+  const md = "{umbFormName: form}";
+  const r = rewriteLabel(md, scanLabel(md, { components: forms, filterAliases: [] }));
+  assert.equal(r.markdown, "‹Form name: form›");
+  assert.equal(r.notes[0].kind, "lookup");
+});

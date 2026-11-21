@@ -114,3 +114,24 @@ test("no settings type gives undefined $settings; Block Single has no $index", (
   assert.equal(v.$settings, undefined);
   assert.ok(!("$index" in v));
 });
+
+test("ElementPicker mock is an array of non-GUID strings (Umbraco 18+)", () => {
+  for (const state of ["filled", "long"]) {
+    const v = mockFor("Umbraco.ElementPicker", undefined, state);
+    assert.ok(Array.isArray(v) && v.length > 0);
+    for (const s of v) {
+      assert.equal(typeof s, "string");
+      assert.doesNotMatch(s, GUID);
+    }
+  }
+  assert.equal(mockFor("Umbraco.ElementPicker", undefined, "long").length, 12);
+  assert.equal(describeEditor("Umbraco.ElementPicker").lookup, true);
+  assert.ok(MOCKED_EDITOR_ALIASES.includes("Umbraco.ElementPicker"));
+});
+
+test("ElementPicker UI alias fallback", () => {
+  const d = describeEditor(undefined, "Umb.PropertyEditorUi.ElementPicker");
+  assert.equal(d.supported, true);
+  assert.equal(d.lookup, true);
+  assert.deepEqual(mockFor(undefined, "Umb.PropertyEditorUi.ElementPicker"), ["mock-element-1"]);
+});

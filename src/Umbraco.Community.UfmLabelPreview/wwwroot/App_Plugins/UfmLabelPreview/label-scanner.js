@@ -18,6 +18,11 @@ const SETTINGS_BRACKET = /\$settings\s*(?:\?\.)?\s*\[\s*(['"])((?:\\.|(?!\1).)*)
 const SETTINGS_DOT = /\$settings\s*\??\.\s*([A-Za-z_$][\w$]*)/g;
 const IDENTIFIER = /[A-Za-z_$][\w$]*/g;
 
+// Kebab-case filter names: core still maps them for component filters (warning, removal in Umbraco 20),
+// but the expression scope only has the camelCase names.
+export const DEPRECATED_FILTERS = { "strip-html": "stripHtml", "title-case": "titleCase", "word-limit": "wordLimit" };
+const DEPRECATED_IN_EXPRESSION = /\|\s*(strip-html|title-case|word-limit)(?![\w-])/g;
+
 const escapeRegExp =(s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 // Same shape as core: ^\{\s*(alias:|marker)([^}]*)\}
@@ -68,6 +73,9 @@ export function scanExpression(text) {
     settingsAliases.push(name);
     return " ";
   });
+
+  // `| strip-html` reads as `| strip - html` in an expression; don't report "html" as a property.
+  rest = rest.replace(DEPRECATED_IN_EXPRESSION, "| ");
 
   const usesIndex = /\$index\b/.test(rest);
 
@@ -171,9 +179,26 @@ export function scanLabel(markdown, { components = [], filterAliases = [] } = {}
     usesIndex ||= expression.usesIndex;
   }
 
+  const deprecatedFilters = [];
+  const seen = new Set();
+  const addDeprecated = (alias, inExpression) => {
+    const key = `${inExpression}:${alias}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    deprecatedFilters.push({ alias, replacement: DEPRECATED_FILTERS[alias], inExpression });
+  };
+  for (const token of componentTokens) {
+    for (const f of token.filters) if (Object.hasOwn(DEPRECATED_FILTERS, f.alias)) addDeprecated(f.alias, false);
+  }
+  for (const expression of expressions) {
+    const code = expression.text.replace(STRING_LITERAL, " ");
+    for (const m of code.matchAll(DEPRECATED_IN_EXPRESSION)) addDeprecated(m[1], true);
+  }
+
   return {
     componentTokens,
     expressions,
+    deprecatedFilters,
     contentAliases: unique(contentAliases),
     settingsAliases: unique(settingsAliases),
     usesIndex,

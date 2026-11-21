@@ -62,6 +62,13 @@ const EDITORS = {
     filled: () => [{ type: "document", unique: "mock-document-1" }],
     long: () => list(LONG_COUNT, (i) => ({ type: "document", unique: `mock-document-${i}` })),
   },
+  // Umbraco 18+. Stores an array of element uniques; non-GUID so ufm-element-name never calls the server.
+  "Umbraco.ElementPicker": {
+    kind: "structured",
+    lookup: true,
+    filled: () => ["mock-element-1"],
+    long: () => list(LONG_COUNT, (i) => `mock-element-${i}`),
+  },
   "Umbraco.MediaPicker3": {
     kind: "structured",
     lookup: true,
@@ -94,6 +101,7 @@ const UI_TO_SCHEMA = {
   "Umb.PropertyEditorUi.Decimal": "Umbraco.Decimal",
   "Umb.PropertyEditorUi.Toggle": "Umbraco.TrueFalse",
   "Umb.PropertyEditorUi.MarkdownEditor": "Umbraco.MarkdownEditor",
+  "Umb.PropertyEditorUi.ElementPicker": "Umbraco.ElementPicker",
 };
 
 function editorFor(editorAlias, editorUiAlias) {
