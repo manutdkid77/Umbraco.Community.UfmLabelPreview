@@ -23,3 +23,6 @@ src/TestSites/*/umbraco/*
 src/TestSites/*/umbraco/Data/*
 !src/TestSites/*/umbraco/Data/.gitkeep
 src/TestSites/*/wwwroot/media/
+
+# Local planning notes
+plans/
