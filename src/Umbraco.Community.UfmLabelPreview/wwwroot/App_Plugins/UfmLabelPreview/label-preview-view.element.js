@@ -536,6 +536,11 @@ export class UlpLabelPreviewViewElement extends UmbLitElement {
         flex-direction: column;
       }
 
+      .row-editor {
+        display: flex;
+        align-items: center;
+      }
+
       .row-editor uui-input,
       .row-editor uui-textarea {
         width: 100%;
