@@ -33,7 +33,7 @@ Open **Mock object** to see the exact object the label renders against:
 
 ![The Mock object panel showing the JSON the label renders against](docs/screenshots/mock-object.png)
 
-Lookups of real content show a placeholder and a note, never real content:
+Lookups of real content are replaced by a placeholder and a note:
 
 ![A umbContentName lookup shown as a placeholder, with a note explaining why](docs/screenshots/lookup-placeholder.png)
 
@@ -43,17 +43,14 @@ Notes flag problems in the label, such as a deprecated filter name:
 
 ## Features
 
-- **Live preview.** The label is rendered by Umbraco's own UFM renderer (`umb-ufm-render`), so the output matches what
-  editors will see.
-- **Realistic mock values.** Each mock has the same shape the property's editor stores, e.g. rich text is
-  `{ markup }`, a media picker is a list of media entries. Settings are under `$settings`, and the block index is
-  under `$index`.
-- **Filled / Empty / Cleared / Long switches** for every referenced property, plus an editable sample value for text,
-  numbers, toggles and rich text markup.
-- **Clear notes** for anything that can't be previewed: lookups of real content (`umbContentName`,
-  `umbMemberName`, `umbElementName`, `umbFormName`), custom UFM components from other packages, unknown aliases, and missing settings types.
-- **Same Label field.** The Label field on this tab is the same value as on the Settings tab, and edits save through
-  the normal path.
+- The label is rendered by Umbraco's own UFM renderer (`umb-ufm-render`), so the output matches what editors will see.
+- Each mock has the same shape the property's editor stores, for example `{ markup }` for rich text and a list of media
+  entries for a media picker. Settings are under `$settings` and the block index is under `$index`.
+- Every referenced property can be switched between **Filled**, **Empty**, **Cleared** and **Long**, with an editable
+  sample value for text, numbers, toggles and rich text markup.
+- Anything that can't be previewed gets a note: lookups of real content (`umbContentName`, `umbMemberName`,
+  `umbElementName`, `umbFormName`), custom UFM components from other packages, unknown aliases and missing settings types.
+- The Label field on this tab is the same value as on the Settings tab, and edits save through the normal path.
 
 ## Installation
 
@@ -64,35 +61,35 @@ dotnet add package Umbraco.Community.UfmLabelPreview
 Restart the site, open a Block List / Block Grid / Rich Text / Block Single data type, open a block type and choose
 the **Label preview** tab.
 
-## What it doesn't do
+## Limitations
 
-- **No real content.** Values are always mocks. Components that look up real items (`umbContentName`,
-  `umbMemberName`, `umbElementName` (Umbraco 18+), `umbFormName` (Umbraco Forms), and `umbLink` on anything other than a Multi URL Picker) are shown as
+- Values are always mocks. Components that look up real items (`umbContentName`, `umbMemberName`, `umbElementName`
+  (Umbraco 18+), `umbFormName` (Umbraco Forms), and `umbLink` on anything other than a Multi URL Picker) are shown as
   placeholders such as `‹Content name: picker›`.
-- **Custom UFM components** from other packages are shown as placeholders (their behaviour can't be mocked
-  reliably). **Custom UFM filters** do run, on the mock data.
-- **Unsupported editors** (Block List/Grid inside a block, Image Cropper, Upload Field, and third-party editors) get an
+- Custom UFM components from other packages are shown as placeholders, because their behaviour can't be mocked
+  reliably. Custom UFM filters do run, on the mock data.
+- Unsupported editors (Block List/Grid inside a block, Image Cropper, Upload Field and third-party editors) get an
   empty `{}` placeholder value and a note.
 - It never changes how labels are saved or rendered at runtime. It's a configuration-time aid only.
 
-## How mocks are built
+## Mock values
 
 Mocks are chosen by the data type's property editor schema alias (falling back to the UI alias). Shapes were checked
 against the Umbraco 17 backoffice source:
 
 | Editor (schema alias) | Filled mock | Verified against |
 |---|---|---|
-| `Umbraco.TextBox`, `Umbraco.TextArea`, `Umbraco.EmailAddress`, `Umbraco.Plain.String`, `Umbraco.MarkdownEditor`, `Umbraco.RadioButtonList` | string | `property-editors/text-box/property-editor-ui-text-box.element.ts:18`, `textarea/…textarea.element.ts:25`, `radio-button-list/…radio-button-list.element.ts:16`, `markdown-editor/…markdown-editor.element.ts:21` |
+| `Umbraco.TextBox`, `Umbraco.TextArea`, `Umbraco.EmailAddress`, `Umbraco.Plain.String`, `Umbraco.MarkdownEditor`, `Umbraco.RadioButtonList` | string | `property-editors/text-box/property-editor-ui-text-box.element.ts:18`, `textarea/...textarea.element.ts:25`, `radio-button-list/...radio-button-list.element.ts:16`, `markdown-editor/...markdown-editor.element.ts:21` |
 | `Umbraco.Integer`, `Umbraco.Decimal` | `42`, `4.2` | `property-editors/number/types.ts:1-2` |
 | `Umbraco.TrueFalse` | `true` | `property-editors/toggle/types.ts:1` |
-| `Umbraco.RichText` | `{ markup: "<p>…</p>" }` | `rte/types.ts:4-7` (`blocks` is optional) |
-| `Umbraco.DropDown.Flexible`, `Umbraco.CheckBoxList` | `["Option A"]` | `dropdown/…dropdown.element.ts:36`, `checkbox-list/…checkbox-list.element.ts:30` |
-| `Umbraco.Tags`, `Umbraco.MultipleTextstring` | string array | `tags/…tags.element.ts:23`, `multiple-text-string/…multiple-text-string.element.ts:17` |
-| `Umbraco.DateTime` | `"2026-03-14 09:30:00"` | `date-picker/…date-picker.element.ts:105-117` |
+| `Umbraco.RichText` | `{ markup: "<p>...</p>" }` | `rte/types.ts:4-7` (`blocks` is optional) |
+| `Umbraco.DropDown.Flexible`, `Umbraco.CheckBoxList` | `["Option A"]` | `dropdown/...dropdown.element.ts:36`, `checkbox-list/...checkbox-list.element.ts:30` |
+| `Umbraco.Tags`, `Umbraco.MultipleTextstring` | string array | `tags/...tags.element.ts:23`, `multiple-text-string/...multiple-text-string.element.ts:17` |
+| `Umbraco.DateTime` | `"2026-03-14 09:30:00"` | `date-picker/...date-picker.element.ts:105-117` |
 | `Umbraco.DateOnly`, `Umbraco.TimeOnly`, `Umbraco.DateTimeUnspecified`, `Umbraco.DateTimeWithTimeZone` | `{ date, timeZone }` | `date-time/property-editor-ui-date-time-picker-base.ts:345-420`, `date-time-with-time-zone-picker/types.ts:1-6` |
 | `Umbraco.ColorPicker` | `{ label, value }` | `color-picker/types.ts:1-6` |
 | `Umbraco.Slider` | `{ from, to }` | `slider/types.ts:1-6` |
-| `Umbraco.ContentPicker`, `Umbraco.MemberPicker` | non-GUID string | `document-picker/…document-picker.element.ts:18`, `member-picker/…member-picker.element.ts:16` |
+| `Umbraco.ContentPicker`, `Umbraco.MemberPicker` | non-GUID string | `document-picker/...document-picker.element.ts:18`, `member-picker/...member-picker.element.ts:16` |
 | `Umbraco.MultiNodeTreePicker` | `[{ type: "document", unique: "mock-document-1" }]` | `content-picker/components/input-content/input-content.element.ts:78-82` |
 | `Umbraco.ElementPicker` (Umbraco 18+) | non-GUID string array | `elements/property-editor/element-picker/element-picker-property-editor-ui.element.ts` |
 | `Umbraco.MediaPicker3` | `[{ key, mediaKey, mediaTypeAlias, focalPoint, crops }]` | `media/media/property-editors/types.ts:1-9` |
@@ -108,7 +105,7 @@ Paths are relative to `src/Umbraco.Web.UI.Client/src/packages/` in the Umbraco-C
 - No mock value ever contains a GUID-shaped id, so core's lookup components never send a request (enforced by a
   unit test).
 
-Behaviour worth knowing, which the preview reproduces faithfully:
+The preview reproduces these quirks of core as they are:
 
 - In Umbraco 17 the `fallback` filter only replaces an empty string. A property that has never been filled is
   `undefined`, so `{= title | fallback:Untitled }` renders empty for it, but `Untitled` once it's been cleared. Compare
@@ -128,7 +125,7 @@ One package covers Umbraco 17, 18 and 19. It has no C# code, so the same NuGet p
 
 | Umbraco | Package |
 |---|---|
-| 17.x | Supported. Verified on 17.8.2 (Block List, Grid, Single and RTE, deprecated-filter notes, the label manual matrix) |
+| 17.x | Supported. Verified on 17.8.2 (Block List, Grid, Single and RTE, deprecated-filter notes, the manual test matrix) |
 | 18.x | Supported. Verified on 18.2.1 and 18.3.2 (Block List, Grid, Single and RTE, including the Element Picker mock) |
 | 19.x | Supported. Verified on 19.0.0-rc1 (Block List, Grid, Single and RTE, including the Element Picker mock, .NET 11 SDK). Not run on a 19.1 release |
 
@@ -141,7 +138,7 @@ deprecation warning, until Umbraco 20. Inside `${ }` only the camelCase names (`
 work. The preview notes either case and still renders what core renders. Otherwise it uses whatever filters are
 registered on your site.
 
- Install for development only (optional)
+## Install for development only (optional)
 
 Block types are normally configured in development and deployed with uSync or Umbraco Deploy, so you may not want
 this tool on production. Even if it ships, the cost is small: there's no C#, nothing runs on the public site, and the
@@ -172,7 +169,7 @@ Retest these on every Umbraco minor:
 | Workspace aliases `Umb.Workspace.Block{List,Grid,Rte,Single}Type` | Undocumented string constants | Medium |
 | Block config keys `label`, `contentElementTypeKey`, `settingsElementTypeKey` | Stored data model | Low |
 | Label value shape `{ ...content, $settings, $index }` | Implementation detail mirrored here | Medium: the preview could drift from runtime |
-| UFM token rules (component `{alias: …}` / marker, `${ … }` expressions) | Implementation detail mirrored by the scanner | Medium |
+| UFM token rules (component `{alias: ...}` / marker, `${ ... }` expressions) | Implementation detail mirrored by the scanner | Medium |
 | `UmbDocumentTypeDetailRepository` (element type + compositions), `UmbDataTypeItemRepository` | Public exports, sparsely documented | Low/Medium |
 | Lookup components only request GUID-shaped ids | Implementation detail | Medium. Lookup tokens are replaced anyway, so this is defence in depth |
 

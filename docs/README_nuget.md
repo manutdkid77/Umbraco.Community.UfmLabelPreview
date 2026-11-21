@@ -12,8 +12,9 @@ data**, and switches to set each referenced property to **Filled**, **Empty**, *
 
 - Mock values have the same shape each property editor stores (rich text `{ markup }`, pickers, dates and so on).
 - `$settings` and `$index` work, mirroring core.
-- Lookups of real content and custom UFM components from other packages are shown as placeholders, never resolved.
-- Client-side only. No content lookups, no telemetry. It doesn't change how labels are saved or rendered.
+- Lookups of real content and custom UFM components from other packages are shown as placeholders and are not resolved.
+- It runs only in the backoffice, makes no content lookups, sends no telemetry and doesn't change how labels are saved
+  or rendered.
 
 ## Installation
 
@@ -23,7 +24,7 @@ dotnet add package Umbraco.Community.UfmLabelPreview
 
 Restart the site, open a block type and choose the **Label preview** tab.
 
-Supports Umbraco 17, 18 and 19 (tested on 17.8, 18.2.1 and 19.0.0-rc1). One package, no C# code.
+Supports Umbraco 17, 18 and 19 from one package with no C# code (tested on 17.8, 18.2.1 and 19.0.0-rc1).
 
 ### Development only (optional)
 
