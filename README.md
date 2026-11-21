@@ -100,7 +100,7 @@ One package covers Umbraco 17, 18 and 19. It has no C# code, so the same NuGet p
 
 | Umbraco | Package |
 |---|---|
-| 17.x | Supported. Verified on 17.8.2 (Block List, Grid, Single and RTE, deprecated-filter notes, the 20-row manual matrix) |
+| 17.x | Supported. Verified on 17.8.2 (Block List, Grid, Single and RTE, deprecated-filter notes, the label manual matrix) |
 | 18.x | Supported. Verified on 18.2.1 and 18.3.2 (Block List, Grid, Single and RTE, including the Element Picker mock) |
 | 19.x | Supported. Verified on 19.0.0-rc1 (Block List, Grid, Single and RTE, including the Element Picker mock, .NET 11 SDK). Not run on a 19.1 release |
 
