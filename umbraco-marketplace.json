@@ -1,0 +1,16 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "AuthorDetails": {
+    "Name": "Nathaniel Nunes",
+    "ImageUrl": "https://github.com/manutdkid77.png",
+    "Url": "https://github.com/manutdkid77"
+  },
+  "Category": "Developer Tools",
+  "Description": "Adds a Label preview tab to Block List, Block Grid, Block RTE and Block Single block types. See how a block label written in UFM renders against mock values while you configure it, without creating any content.",
+  "LicenseTypes": [ "Free" ],
+  "DocumentationUrl": "https://github.com/manutdkid77/Umbraco.Community.UfmLabelPreview#readme",
+  "IssueTrackerUrl": "https://github.com/manutdkid77/Umbraco.Community.UfmLabelPreview/issues",
+  "PackageType": "Package",
+  "Tags": [ "backoffice", "block list", "block grid", "ufm", "labels", "developer experience" ],
+  "Title": "Umbraco.Community.UfmLabelPreview"
+}
