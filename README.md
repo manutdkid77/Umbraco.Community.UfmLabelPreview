@@ -11,7 +11,27 @@ but when you configure a block type there's no content yet, so you can't see the
 Label field, a live preview rendered with **mock data**, and a panel for flipping each referenced property between
 **Filled**, **Empty**, **Cleared** and **Long**, so you can check your `||`, `?:` and `| fallback` branches and your truncation.
 
+![UFM Label Preview: typing a label, switching mock values and adding a settings value](docs/screenshots/demo.gif)
+
+## Screenshots
+
 ![The Label preview tab: label field, rendered preview and mock value overrides](docs/screenshots/label-preview.png)
+
+Switch a value to **Empty** to see how the label looks when a field is blank:
+
+![The Empty state, showing a stray separator left in the label](docs/screenshots/state-empty.png)
+
+Switch it to **Long** to check how a long value wraps:
+
+![The Long state, showing a long title wrapping in the preview](docs/screenshots/state-long.png)
+
+`$settings` values from the settings model get their own mock row:
+
+![A $settings value with its own mock row](docs/screenshots/settings-value.png)
+
+Notes flag problems in the label, such as a deprecated filter name:
+
+![A note warning that the strip-html filter is deprecated](docs/screenshots/filter-note.png)
 
 ## Features
 

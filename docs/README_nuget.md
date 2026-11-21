@@ -4,7 +4,11 @@ See how a block's label will render while you're still configuring it.
 
 This package adds a **Label preview** tab to the block type editor (Block List, Block Grid, Block RTE and Block Single)
 in Umbraco 17, 18 and 19. The tab shows the Label field, a live preview rendered by Umbraco's own UFM renderer using **mock
-data**, and switches to set each referenced property to **Filled**, **Empty** or **Long**.
+data**, and switches to set each referenced property to **Filled**, **Empty**, **Cleared** or **Long**.
+
+![UFM Label Preview: typing a label, switching mock values and adding a settings value](https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/demo.gif)
+
+![The Label preview tab: label field, rendered preview and mock value overrides](https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/label-preview.png)
 
 - Mock values have the same shape each property editor stores (rich text `{ markup }`, pickers, dates and so on).
 - `$settings` and `$index` work, mirroring core.

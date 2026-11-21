@@ -11,6 +11,32 @@
   "DocumentationUrl": "https://github.com/manutdkid77/Umbraco.Community.UfmLabelPreview#readme",
   "IssueTrackerUrl": "https://github.com/manutdkid77/Umbraco.Community.UfmLabelPreview/issues",
   "PackageType": "Package",
+  "Screenshots": [
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/label-preview.png",
+      "Caption": "The Label preview tab: label field, rendered preview and mock values"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/state-empty.png",
+      "Caption": "Empty state: see how the label looks when a field is blank"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/state-long.png",
+      "Caption": "Long state: check how a long value wraps"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/settings-value.png",
+      "Caption": "Settings model values get their own mock row"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/filter-note.png",
+      "Caption": "Notes flag problems such as a deprecated filter"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/demo.gif",
+      "Caption": "Typing a label, switching mock values and adding a settings value"
+    }
+  ],
   "Tags": [ "backoffice", "block list", "block grid", "ufm", "labels", "developer experience" ],
   "Title": "Umbraco.Community.UfmLabelPreview"
 }
