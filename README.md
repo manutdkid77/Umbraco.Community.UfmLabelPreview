@@ -170,7 +170,8 @@ dotnet pack src/Umbraco.Community.UfmLabelPreview -c Release
 Each test site seeds the `ULP` fixtures on first start: element types plus Block List, Block Grid, Block Single and Block RTE data types (see `src/TestSites/Shared`). The Element Picker fixture is added on 18 and 19 only.
 
 There's no build step for the client code. The files in `wwwroot/App_Plugins/UfmLabelPreview/` are served as they
-are.
+are. While editing JS, tick **Disable cache** in the browser's DevTools Network tab, because the version in the URL
+doesn't change between edits and a refresh can show old code.
 
 When releasing, bump the version in `umbraco-package.json`, the csproj `<Version>` and `CHANGELOG.md` together.
 Umbraco appends the manifest version to the view's URL (`?umb__rnd=<version>`), and the view passes that query on
