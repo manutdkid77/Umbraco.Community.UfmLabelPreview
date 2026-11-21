@@ -22,6 +22,11 @@
     <ProjectReference Include="..\..\Umbraco.Community.UfmLabelPreview\Umbraco.Community.UfmLabelPreview.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Shared test fixtures (ULP element types and block data types), seeded on first start. -->
+    <Compile Include="..\Shared\UfmLabelPreviewSeedData.cs" Link="UfmLabelPreviewSeedData.cs" />
+  </ItemGroup>
+
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->
     <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
