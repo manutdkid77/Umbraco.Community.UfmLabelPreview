@@ -100,9 +100,9 @@ One package covers Umbraco 17, 18 and 19. It has no C# code, so the same NuGet p
 
 | Umbraco | Package |
 |---|---|
-| 17.x | Supported. Verified on 17.8.0 (Block List, deprecated-filter notes); the full manual matrix was run on 17.7.0 |
-| 18.x | Supported. Verified on 18.2.1 (Block List, including the Element Picker mock) |
-| 19.x | Supported. Verified on 19.0.0-rc1 (Block List, .NET 11 SDK). Not run on a 19.1 release |
+| 17.x | Supported. Verified on 17.8.2 (Block List, Clean starter kit, deprecated-filter notes); the full manual matrix was run on 17.7.0 |
+| 18.x | Supported. Verified on 18.2.1 (including the Element Picker mock) and 18.3.2 (Block List, Clean starter kit) |
+| 19.x | Supported. Verified on 19.0.0-rc1 (Block List, Clean starter kit, .NET 11 SDK). Not run on a 19.1 release |
 
 The NuGet dependency range is `[17.0.0, 20.0.0)`. Umbraco 19 targets .NET 11. The package stays on net10.0, which
 a .NET 11 site can consume.
