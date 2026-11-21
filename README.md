@@ -1,4 +1,4 @@
-# UFM Label Preview for Umbraco
+# <img src="docs/icon.png" alt="UFM Label Preview icon" width="50" height="50" align="absmiddle" /> UFM Label Preview for Umbraco
 
 [![Umbraco 17 | 18 | 19](https://img.shields.io/badge/Umbraco-17%20%7C%2018%20%7C%2019-3544B1?logo=umbraco)](https://umbraco.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
