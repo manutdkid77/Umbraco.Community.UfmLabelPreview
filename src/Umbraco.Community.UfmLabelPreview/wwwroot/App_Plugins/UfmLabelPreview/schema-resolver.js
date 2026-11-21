@@ -1,6 +1,4 @@
-// Schema lookups (element type + data type definitions, never content) for the label preview.
-// One-shot repository requests only. Core's UmbContentTypeStructureManager is deliberately not used: it keeps
-// loading data type details in the background and throws if our view is closed while that's in flight.
+// One-shot schema lookups (element and data type definitions, no content); UmbContentTypeStructureManager throws if closed mid-load.
 
 import { UmbDocumentTypeDetailRepository } from "@umbraco-cms/backoffice/document-type";
 import { UmbDataTypeItemRepository } from "@umbraco-cms/backoffice/data-type";

@@ -1,6 +1,4 @@
-// "Label preview" workspace view for block types: the block's Label field, a live UFM render of it against mock data,
-// and an override panel to flip each referenced property between filled / empty / long.
-// Fail-safe: anything that goes wrong only hides the preview; the Label field (core's umb-property) always renders.
+// "Label preview" workspace view: the Label field, a live UFM render against mock data and mock overrides; failures only hide the preview.
 
 import { html, css, nothing, repeat } from "@umbraco-cms/backoffice/external/lit";
 import { UmbLitElement } from "@umbraco-cms/backoffice/lit-element";
@@ -10,8 +8,7 @@ import { UMB_WORKSPACE_CONTEXT } from "@umbraco-cms/backoffice/workspace";
 import { umbExtensionsRegistry } from "@umbraco-cms/backoffice/extension-registry";
 import "@umbraco-cms/backoffice/ufm"; // defines <umb-ufm-render>
 
-// Umbraco loads this file as "…element.js?umb__rnd=<package version>" to bust browser caches on upgrade, but
-// that doesn't reach our own imports. Pass the same query on, so bumping the manifest version refreshes them all.
+// Pass Umbraco's ?umb__rnd=<version> cache-bust query on to our own imports so a version bump refreshes them all.
 const CACHE_BUST = new URL(import.meta.url).search;
 const [{ scanLabel }, { rewriteLabel }, { buildMockValue, describeEditor, statesFor }] = await Promise.all([
   import(`./label-scanner.js${CACHE_BUST}`),

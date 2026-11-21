@@ -1,6 +1,4 @@
-// Pure: mock property values in the same shape each editor stores, for the label preview.
-// Shapes are verified against the Umbraco 17 backoffice source; see README "How mocks are built".
-// Hard rule: no mock ever contains a GUID-shaped string (core's lookup components only request GUIDs).
+// Pure: mock values in each editor's stored shape, never GUID-shaped so core's lookups never fire a request.
 
 // empty = never filled (no stored value, undefined); cleared = typed in then deleted (""), only for editors that store that.
 export const STATES = ["filled", "empty", "cleared", "long"];

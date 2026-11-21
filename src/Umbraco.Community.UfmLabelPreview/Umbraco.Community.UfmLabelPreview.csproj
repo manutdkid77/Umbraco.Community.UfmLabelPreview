@@ -23,8 +23,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
-  <!-- Central package management - versions live in src/Directory.Packages.props.
-       No C# code: the reference only constrains consumers to Umbraco 17-19. -->
+  <!-- Versions live in src/Directory.Packages.props; no C# code, the reference only limits consumers to Umbraco 17-19. -->
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms.Core" />
   </ItemGroup>

@@ -16,8 +16,7 @@ Thumbs.db
 *.snupkg
 artifacts/
 
-# Test site runtime data (database, logs, media). appsettings.Development.json is tracked on purpose:
-# it holds the throwaway unattended-install login so each test site runs with no setup.
+# Test site runtime data; appsettings.Development.json stays tracked for the throwaway unattended login.
 src/TestSites/*/umbraco/*
 !src/TestSites/*/umbraco/Data/
 src/TestSites/*/umbraco/Data/*

@@ -1,6 +1,4 @@
-// Pure: finds the UFM component tokens and ${ } expressions in a block label, and which property aliases they reference.
-// Mirrors core's tokenizers (ufm/plugins/marked-ufm.plugin.ts, marked-ufmjs.plugin.ts); never executes anything.
-// No imports, so it runs under `node --test`.
+// Pure: finds UFM tokens and ${ } expressions in a label, mirroring core's tokenizers; no imports so it runs under node --test.
 
 // Core's expression token: `${ … }` allowing one level of nested braces.
 const EXPRESSION = /^\$\{((?:[^{}]|\{[^{}]*\})*)\}/;
@@ -18,8 +16,7 @@ const SETTINGS_BRACKET = /\$settings\s*(?:\?\.)?\s*\[\s*(['"])((?:\\.|(?!\1).)*)
 const SETTINGS_DOT = /\$settings\s*\??\.\s*([A-Za-z_$][\w$]*)/g;
 const IDENTIFIER = /[A-Za-z_$][\w$]*/g;
 
-// Kebab-case filter names: core still maps them for component filters (warning, removal in Umbraco 20),
-// but the expression scope only has the camelCase names.
+// Kebab-case filters still work as component filters until Umbraco 20 but not inside ${ }, where only camelCase exists.
 export const DEPRECATED_FILTERS = { "strip-html": "stripHtml", "title-case": "titleCase", "word-limit": "wordLimit" };
 const DEPRECATED_IN_EXPRESSION = /\|\s*(strip-html|title-case|word-limit)(?![\w-])/g;
 

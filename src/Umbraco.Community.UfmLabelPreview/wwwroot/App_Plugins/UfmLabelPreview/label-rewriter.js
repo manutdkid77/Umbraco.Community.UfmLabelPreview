@@ -1,5 +1,4 @@
-// Pure: replaces UFM component tokens that can't be previewed with mock data by readable placeholder text.
-// Output is still markdown and still goes through core's marked + DOMPurify pipeline; this never produces HTML.
+// Pure: swaps UFM tokens that can't be previewed for placeholder text; output stays markdown for core's pipeline.
 
 export const PREVIEWABLE_COMPONENTS = ["umbValue", "umbLocalize", "umbLink"];
 
