@@ -524,7 +524,7 @@ export class UlpLabelPreviewViewElement extends UmbLitElement {
 
       .row {
         display: grid;
-        grid-template-columns: minmax(160px, 1fr) auto minmax(200px, 2fr);
+        grid-template-columns: minmax(160px, 1fr) 12rem minmax(200px, 2fr);
         gap: var(--uui-size-space-4);
         align-items: center;
         padding: var(--uui-size-space-3) 0;
