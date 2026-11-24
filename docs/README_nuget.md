@@ -31,7 +31,7 @@ Supports Umbraco 17, 18 and 19 from one package with no C# code (tested on 17.8,
 To keep it out of Release builds and published output:
 
 ```xml
-<PackageReference Include="Umbraco.Community.UfmLabelPreview" Version="0.2.0"
+<PackageReference Include="Umbraco.Community.UfmLabelPreview" Version="1.0.0"
                   Condition="'$(Configuration)' == 'Debug'" />
 ```
 

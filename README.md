@@ -96,7 +96,7 @@ JavaScript only loads when the Label preview tab is opened.
 To leave it out of Release builds, add a condition to the package reference:
 
 ```xml
-<PackageReference Include="Umbraco.Community.UfmLabelPreview" Version="0.2.0"
+<PackageReference Include="Umbraco.Community.UfmLabelPreview" Version="1.0.0"
                   Condition="'$(Configuration)' == 'Debug'" />
 ```
 

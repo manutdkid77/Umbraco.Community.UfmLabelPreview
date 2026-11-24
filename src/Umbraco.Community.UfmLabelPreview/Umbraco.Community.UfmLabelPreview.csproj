@@ -11,7 +11,7 @@
     <Product>Umbraco.Community.UfmLabelPreview</Product>
     <PackageId>Umbraco.Community.UfmLabelPreview</PackageId>
     <!-- Keep in step with umbraco-package.json "version" and CHANGELOG.md -->
-    <Version>0.2.0</Version>
+    <Version>1.0.0</Version>
     <Title>Umbraco.Community.UfmLabelPreview</Title>
     <Description>Live preview of block labels (Umbraco Flavored Markdown) while configuring Block List, Block Grid, Block RTE and Block Single types, using mock data. Configuration-time aid only; no content lookups, no telemetry.</Description>
     <!-- "umbraco-marketplace" is what gets the package listed on the Umbraco Marketplace -->
