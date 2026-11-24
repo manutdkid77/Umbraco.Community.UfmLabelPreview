@@ -1,7 +1,10 @@
 # <img src="docs/icon.png" alt="UFM Label Preview icon" width="50" height="50" align="absmiddle" /> UFM Label Preview for Umbraco
 
+[![NuGet version](https://img.shields.io/nuget/v/Umbraco.Community.UfmLabelPreview?logo=nuget&label=NuGet)](https://www.nuget.org/packages/Umbraco.Community.UfmLabelPreview)
+[![Umbraco Marketplace](https://img.shields.io/badge/Umbraco-Marketplace-3544B1?logo=umbraco)](https://marketplace.umbraco.com/package/umbraco.community.ufmlabelpreview)
 [![Umbraco 17 | 18 | 19](https://img.shields.io/badge/Umbraco-17%20%7C%2018%20%7C%2019-3544B1?logo=umbraco)](https://umbraco.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
+[![Build](https://img.shields.io/github/actions/workflow/status/manutdkid77/Umbraco.Community.UfmLabelPreview/build.yml?branch=main&logo=github&label=Build)](https://github.com/manutdkid77/Umbraco.Community.UfmLabelPreview/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/github/license/manutdkid77/Umbraco.Community.UfmLabelPreview?label=License)](LICENSE)
 
 See how a block's label will render while you're still configuring it.
 
