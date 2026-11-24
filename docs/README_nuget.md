@@ -35,4 +35,5 @@ To keep it out of Release builds and published output:
                   Condition="'$(Configuration)' == 'Debug'" />
 ```
 
-Umbraco Cloud and most CI pipelines build in Release, so leave the condition off if you configure blocks there.
+Umbraco Cloud and most CI pipelines build in Release, so with this condition the Label preview tab won't be there
+either. If you want it on a Cloud environment, leave the condition off.

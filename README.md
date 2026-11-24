@@ -102,9 +102,9 @@ To leave it out of Release builds, add a condition to the package reference:
 
 Release builds and `dotnet publish -c Release` then leave out the DLL and `App_Plugins/UfmLabelPreview`.
 
-Caveat: Umbraco Cloud and most CI pipelines build every environment in Release, so the tool won't be on Cloud
-environments either. If you configure blocks on a Cloud dev environment, leave the condition off. `Debug` is only a
-convention, so a custom configuration or property works too.
+Umbraco Cloud and most CI pipelines build in Release, so with this condition the Label preview tab won't be there
+either. If you want it on a Cloud environment, leave the condition off. `Debug` is only a convention, so a custom
+configuration or property works too.
 
 
 ## Privacy and security
