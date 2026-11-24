@@ -18,10 +18,19 @@
     <PackageTags>umbraco;umbraco-marketplace;umbraco-cms;backoffice;block-list;block-grid;ufm</PackageTags>
     <Authors>Nathaniel Nunes</Authors>
     <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Nathaniel Nunes</Copyright>
-    <!-- TODO before release: PackageProjectUrl, RepositoryUrl, PackageReleaseNotes and Source Link settings (see Property-Navigator). -->
+    <PackageProjectUrl>https://github.com/manutdkid77/Umbraco.Community.UfmLabelPreview</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/manutdkid77/Umbraco.Community.UfmLabelPreview</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>See https://github.com/manutdkid77/Umbraco.Community.UfmLabelPreview/blob/main/CHANGELOG.md</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <!-- Writes the repository URL and commit into the nuspec; no symbols package because there is no C# code. -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <!-- Versions live in src/Directory.Packages.props; no C# code, the reference only limits consumers to Umbraco 17-19. -->
