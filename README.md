@@ -44,10 +44,8 @@ Notes flag problems in the label, such as a deprecated filter name:
 ## Features
 
 - The label is rendered by Umbraco's own UFM renderer (`umb-ufm-render`), so the output matches what editors will see.
-- Each mock has the same shape the property's editor stores, for example `{ markup }` for rich text and a list of media
-  entries for a media picker. Settings are under `$settings` and the block index is under `$index`.
-- Every referenced property can be switched between **Filled**, **Empty**, **Cleared** and **Long**, with an editable
-  sample value for text, numbers, toggles and rich text markup.
+- Every referenced property gets a mock value with the same shape its editor stores, and you can switch it between
+  **Filled**, **Empty**, **Cleared** and **Long**.
 - Anything that can't be previewed gets a note: lookups of real content (`umbContentName`, `umbMemberName`,
   `umbElementName`, `umbFormName`), custom UFM components from other packages, unknown aliases and missing settings types.
 - The Label field on this tab is the same value as on the Settings tab, and edits save through the normal path.
