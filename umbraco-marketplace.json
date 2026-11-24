@@ -43,6 +43,10 @@
     {
       "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/demo.gif",
       "Caption": "Typing a label, switching mock values and adding a settings value"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/manutdkid77/Umbraco.Community.UfmLabelPreview/main/docs/screenshots/walkthrough.gif",
+      "Caption": "From Settings to the Label preview tab in the backoffice"
     }
   ],
   "Tags": [ "backoffice", "block list", "block grid", "ufm", "labels", "developer experience" ],

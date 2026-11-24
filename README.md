@@ -13,6 +13,12 @@ Label field, a live preview rendered with **mock data**, and a panel for flippin
 
 ![UFM Label Preview: typing a label, switching mock values and adding a settings value](docs/screenshots/demo.gif)
 
+## Walkthrough
+
+From the Settings section to the Label preview tab, then writing a label and trying the mock values:
+
+![Walkthrough in the backoffice: open a block type, open Label preview, write a label and switch mock values](docs/screenshots/walkthrough.gif)
+
 ## Screenshots
 
 ![The Label preview tab: label field, rendered preview and mock value overrides](docs/screenshots/label-preview.png)
