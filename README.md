@@ -11,12 +11,6 @@ but when you configure a block type there's no content yet, so you can't see the
 Label field, a live preview rendered with **mock data**, and a panel for flipping each referenced property between
 **Filled**, **Empty**, **Cleared** and **Long**, so you can check your `||`, `?:` and `| fallback` branches and your truncation.
 
-![UFM Label Preview: typing a label, switching mock values and adding a settings value](docs/screenshots/demo.gif)
-
-## Walkthrough
-
-From the Settings section to the Label preview tab, then writing a label and trying the mock values:
-
 ![Walkthrough in the backoffice: open a block type, open Label preview, write a label and switch mock values](docs/screenshots/walkthrough.gif)
 
 ## Screenshots
