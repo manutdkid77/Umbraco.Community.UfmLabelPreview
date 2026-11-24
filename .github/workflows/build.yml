@@ -1,0 +1,48 @@
+name: Build
+
+# Checks every PR and push to main still passes the tests and packs.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run JavaScript tests
+        run: node --test
+
+      # The Umbraco 19 test site needs the .NET 11 SDK, so CI builds 17 and 18 only.
+      - name: Build v17 test site (builds the package too)
+        run: dotnet build src/TestSites/V17/Umbraco.Community.UfmLabelPreview.TestSite.V17.csproj -c Release
+
+      - name: Build v18 test site
+        run: dotnet build src/TestSites/V18/Umbraco.Community.UfmLabelPreview.TestSite.V18.csproj -c Release
+
+      - name: Pack
+        run: dotnet pack src/Umbraco.Community.UfmLabelPreview/Umbraco.Community.UfmLabelPreview.csproj -c Release -o artifacts
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-package
+          path: artifacts/*
