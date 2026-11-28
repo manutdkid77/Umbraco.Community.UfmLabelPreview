@@ -16,6 +16,8 @@ Label field, a live preview rendered with **mock data**, and a panel for flippin
 
 ![Walkthrough in the backoffice: open a block type, open Label preview, write a label and switch mock values](docs/screenshots/walkthrough.gif)
 
+Want the story behind it? Read the [launch blog post](https://www.nathanielnunes.com/blog/umbraco-block-label-preview-ufm).
+
 ## Screenshots
 
 ![The Label preview tab: label field, rendered preview and mock value overrides](docs/screenshots/label-preview.png)
